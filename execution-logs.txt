@@ -1,0 +1,85 @@
+TASK 3 – INFRASTRUCTURE AS CODE (IaC) WITH TERRAFORM
+=====================================================
+
+Project: Terraform Docker Infrastructure
+Tool: Terraform
+Provider: Docker
+
+1. Terraform Initialization
+Command:
+terraform init
+
+Result:
+Terraform initialized successfully and the Docker provider was installed.
+
+2. Terraform Plan
+Command:
+terraform plan
+
+Result:
+Terraform generated an execution plan to create:
+- docker_image.nodejs_app
+- docker_container.nodejs_app
+
+3. Terraform Apply
+Command:
+terraform apply
+
+Confirmation:
+yes
+
+Result:
+Terraform successfully created the Docker image resource and Docker container.
+
+4. Docker Verification
+Command:
+docker ps
+
+Result:
+The Terraform-created Docker container was running successfully.
+
+5. Application Verification
+URL:
+http://localhost:3001
+
+Result:
+The Node.js application opened successfully in the browser.
+
+6. Terraform State
+Command:
+terraform state list
+
+Resources:
+docker_container.nodejs_app
+docker_image.nodejs_app
+
+7. Resource Inspection
+Command:
+terraform state show docker_container.nodejs_app
+
+Result:
+The Terraform-managed Docker container details were displayed.
+
+8. Terraform Destroy
+Command:
+terraform destroy
+
+Result:
+The Terraform-created Docker container was successfully destroyed.
+
+Note:
+The Docker image was shared with the existing Task 2 Jenkins container.
+Therefore, Docker could not remove the shared image. The image was intentionally
+retained so that the Task 2 container could continue to use it.
+
+9. Terraform State Cleanup
+Command:
+terraform state rm docker_image.nodejs_app
+
+Result:
+The shared Docker image was removed from Terraform state without deleting
+the actual Docker image.
+
+Final Result:
+Terraform state contains no managed resources.
+The Docker image required by Task 2 was preserved.
